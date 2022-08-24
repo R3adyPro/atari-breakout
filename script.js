@@ -38,6 +38,20 @@ document.body.onkeyup = function(e) {
     }
 };
   
+  function collisionDetection(){
+    bricks.forEach(function(b){
+      if (!b.status) return;
+
+      var colums = circle.x > b.palikkaX && circle.x < b.palikkaX + brickType.w,
+          rows = circle.y > b.palikkaY && circle.y < b.palikkaY + brickType.h;
+
+          if (colums && rows){
+            circle.dy *= -1;
+            b.status = 0;
+          }
+    })
+  }
+
   function drawCircle() {
     ctx.beginPath();
     ctx.arc(circle.x, circle.y, circle.size, 0, Math.PI * 2);
@@ -56,12 +70,13 @@ document.body.onkeyup = function(e) {
       ctx.closePath();
     })
    }
-  
+
   function update() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
 
     drawCircle();
     drawBricks();
+    collisionDetection();
   
     circle.x -= circle.dx;
     circle.y -= circle.dy;
@@ -71,6 +86,7 @@ document.body.onkeyup = function(e) {
     }
   
     if (circle.y - circle.size < 0) {
+      console.log(1)
       circle.dy *= -1;
     }
     if (circle.y + circle.size > canvas.height) {
