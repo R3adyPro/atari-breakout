@@ -10,16 +10,36 @@
         background-color: white;
     }
     h1 {
-        color: white;
+        color: black;
     }
     canvas {
         background-color: gray;
+        border: 1px solid black;
+    }
+    .child {
+    display: inline-block;
+    vertical-align: top;
+    }
+    .tilasto {
+        width: 130px;
+        height: 70px;
+        background-color: gray;
+        border: 1px solid black;
     }
 </style>
 <body>
 <center>
-    <h1>Amis Breakout</h1>
-<canvas id="canvas"></canvas>
+<h1>Amis Breakout</h1>
+    
+<div class='child'>
+    <canvas id="canvas"></canvas>
+</div>
+<div class="child">
+    <div class="tilasto">
+        <h2><span id="lukema">0</span> pistettä</h2>
+    </div>
+</div>
+
 </center>
 <script src="script.js"></script>
 </body>
