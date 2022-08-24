@@ -8,7 +8,7 @@ document.body.onkeyup = function(e) {
         e.code == "Space" ||      
         e.keyCode == 32      
     ) {
-      console.log("space");
+      console.log("Peli alkoi space-näppäimestä");
       const circle = {
       x: 450,
       y: 700,
@@ -36,8 +36,11 @@ document.body.onkeyup = function(e) {
         circle.dx *= -1;
       }
     
-      if (circle.y + circle.size > canvas.height || circle.y - circle.size < 0) {
+      if (circle.y - circle.size < 0) {
         circle.dy *= -1;
+      }
+      if (circle.y + circle.size > canvas.height) {
+        location.reload();
       }
     
       requestAnimationFrame(update);
