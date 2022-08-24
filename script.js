@@ -1,13 +1,13 @@
 const canvas = document.getElementById('canvas');
 const ctx = canvas.getContext('2d');
-canvas.width = 600;
-canvas.height = 600;
+canvas.width = 900;
+canvas.height = 800;
 
 
 const circle = {
-      x: 200,
-      y: 200,
-      size: 30,
+      x: 450,
+      y: 700,
+      size: 20,
       dx: 5,
       dy: 4
     };
@@ -24,8 +24,8 @@ const circle = {
     
       drawCircle();
     
-      circle.x += circle.dx;
-      circle.y += circle.dy;
+      circle.x -= circle.dx;
+      circle.y -= circle.dy;
 
       if (circle.x + circle.size > canvas.width || circle.x - circle.size < 0) {
         circle.dx *= -1;
