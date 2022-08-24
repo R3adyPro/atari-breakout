@@ -1,3 +1,4 @@
+var pisteet = 0;
 const canvas = document.getElementById('canvas');
 const ctx = canvas.getContext('2d');
 canvas.width = 900;
@@ -41,11 +42,13 @@ document.body.onkeyup = function(e) {
   function collisionDetection(){
     bricks.forEach(function(b){
       if (!b.status) return;
-
+  
       var colums = circle.x > b.palikkaX && circle.x < b.palikkaX + brickType.w,
           rows = circle.y > b.palikkaY && circle.y < b.palikkaY + brickType.h;
 
           if (colums && rows){
+            pisteet += 10;
+            document.getElementById("lukema").innerHTML = pisteet;
             circle.dy *= -1;
             b.status = 0;
           }
