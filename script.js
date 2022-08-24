@@ -3,8 +3,13 @@ const ctx = canvas.getContext('2d');
 canvas.width = 900;
 canvas.height = 800;
 
-
-const circle = {
+document.body.onkeyup = function(e) {
+    if (e.key == " " ||
+        e.code == "Space" ||      
+        e.keyCode == 32      
+    ) {
+      console.log("space");
+      const circle = {
       x: 450,
       y: 700,
       size: 20,
@@ -40,3 +45,6 @@ const circle = {
     
     update();
     
+    }
+  }
+
