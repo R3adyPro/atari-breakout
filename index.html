@@ -13,9 +13,12 @@
     h1 {
         color: black;
     }
+    h2 {
+        color: white;
+    }
     canvas {
-        background-color: gray;
-        border: 1px solid black;
+        background-color: black;
+        border: 3px solid red;
     }
     .child {
     display: inline-block;
@@ -24,13 +27,16 @@
     .tilasto {
         width: 130px;
         height: 70px;
-        background-color: gray;
-        border: 1px solid black;
+        background-color: black;
+        border: 3px solid red;
     }
 </style>
     <body>
         <center>
-            <h1>Amis Breakout</h1>
+            <div class="banner">
+                <img src="banner.png">
+            </div>
+            
                 
             <div class='child' onmousemove="canvasGetCoords(event)">
                 <canvas id="canvas"></canvas>

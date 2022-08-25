@@ -33,13 +33,16 @@ const rect = {
   h: 10
 };
 
+function sound() {
+  var sound = new Audio("aani.mp3");
+  sound.play();
+}
 function canvasGetCoords(e){
   var leveys = document.documentElement.clientWidth;
   if(leveys % 2){
     leveys-=1;
   }
   mousex=e.clientX-((leveys-document.getElementById("tilasto").clientWidth-canvas.width-4)/2);
-  console.log(mousex);
 }
 
 
@@ -77,6 +80,7 @@ function collisionDetection(){
           pisteet += 10;
           document.getElementById("lukema").innerHTML = pisteet;
           circle.dy *= -1;
+          sound();
           b.status = 0;
         }
   })
@@ -113,7 +117,7 @@ function drawRect(){
 function drawCircle() {
   ctx.beginPath();
   ctx.arc(circle.x, circle.y, circle.size, 0, Math.PI * 2);
-  ctx.fillStyle = 'purple';
+  ctx.fillStyle = 'white';
   ctx.fill();
 }
 
@@ -146,6 +150,10 @@ function update() {
   circle.x -= circle.dx;
   circle.y -= circle.dy;
 
+  if (pisteet == 400) {
+    dx == 0;
+    dy == 0;
+  }
   if(mousex <= rect.w/2){
     mousex = rect.w/2;
   }else if(mousex >= canvas.width-rect.w/2){
@@ -155,11 +163,13 @@ function update() {
 
   if (circle.x + circle.size > canvas.width || circle.x - circle.size < 0) {
     circle.dx *= -1;
+    sound();
   }
 
   if (circle.y - circle.size < 0) {
     console.log(1)
     circle.dy *= -1;
+    sound();
   }
   if (circle.y + circle.size > canvas.height) {
     location.reload();
