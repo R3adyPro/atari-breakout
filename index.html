@@ -12,9 +12,11 @@
     }
     h1 {
         color: black;
+        font-family: Tahoma;
     }
     h2 {
         color: white;
+        font-family: Tahoma;
     }
     canvas {
         background-color: black;
@@ -25,7 +27,7 @@
     vertical-align: top;
     }
     .tilasto {
-        width: 130px;
+        width: 150px;
         height: 70px;
         background-color: black;
         border: 3px solid red;
@@ -36,13 +38,20 @@
             <div class="banner">
                 <img src="banner.png">
             </div>
-            
-                
-            <div class='child' onmousemove="canvasGetCoords(event)">
+            <div class="alkuRuutu" id="alkuRuutu" style="display: block">
+                <h1>Tervetuloa!</h1>
+                <h2 style="color: black">Pelin tavoitteena on tuhota kaikki palikat pallolla.</h2>
+                <h2 style="color: black">Peli alkaa painamalla välilyönti-näppäintä.</h2>
+            </div>
+            <div class="havioRuutu" id="havioRuutu" style="display: none">
+                <h1>Hävisit pelin!</h1>
+                <button type="button" onclick="location.reload()">Aloita uudestaan</button>
+            </div>
+            <div class='child' id="canvasDiv" onmousemove="canvasGetCoords(event)" style="display: none">
                 <canvas id="canvas"></canvas>
             </div>
             <div class="child" id="tilasto">
-                <div class="tilasto">
+                <div class="tilasto" id="tilastoDiv" style="display: none">
                     <h2><span id="lukema">0</span> pistettä</h2>
                 </div>
             </div>

@@ -33,9 +33,13 @@ const rect = {
   h: 10
 };
 
-function sound() {
+function palikkasound() {
   var sound = new Audio("aani.mp3");
   sound.play();
+}
+function seinasound() {
+  var seina = new Audio("seina.mp3");
+  seina.play();
 }
 function canvasGetCoords(e){
   var leveys = document.documentElement.clientWidth;
@@ -52,6 +56,9 @@ document.body.onkeyup = function(e) {
       e.code == "Space" ||      
       e.keyCode == 32      
   ) {
+    document.getElementById("alkuRuutu").style.display = "none";
+    document.getElementById("canvasDiv").style.display = "inline-block";
+    document.getElementById("tilastoDiv").style.display = "inline-block";
     console.log("Peli alkoi space-näppäimestä");
   
   for(c = 0; c < columnCount; c++){ 
@@ -80,7 +87,7 @@ function collisionDetection(){
           pisteet += 10;
           document.getElementById("lukema").innerHTML = pisteet;
           circle.dy *= -1;
-          sound();
+          palikkasound();
           b.status = 0;
         }
   })
@@ -163,16 +170,18 @@ function update() {
 
   if (circle.x + circle.size > canvas.width || circle.x - circle.size < 0) {
     circle.dx *= -1;
-    sound();
+    seinasound();
   }
 
   if (circle.y - circle.size < 0) {
     console.log(1)
     circle.dy *= -1;
-    sound();
+    seinasound();
   }
   if (circle.y + circle.size > canvas.height) {
-    location.reload();
+    document.getElementById("havioRuutu").style.display = "block";
+    document.getElementById("canvasDiv").style.display = "none";
+    document.getElementById("tilastoDiv").style.display = "none";    
   }
 
   requestAnimationFrame(update);
