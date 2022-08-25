@@ -11,8 +11,8 @@ let bricks = [];
 
 const circle = {
   x: 450,
-  y: 700,
-  size: 20,
+  y: 650,
+  size: 10,
   dx: 5,
   dy: 4
 }
@@ -78,8 +78,8 @@ function collisionDetection(){
   })
 
   
-  var hor = circle.x > rect.x && circle.x < rect.x + rect.w;
-  var ver = circle.y > rect.y && circle.y < rect.y + rect.h;
+  var hor = (circle.x+circle.size > rect.x || circle.x-circle.size > rect.x) && (circle.x+circle.size < rect.x + rect.w || circle.x-circle.size < rect.x + rect.w);
+  var ver = circle.y+circle.size > rect.y && circle.y+circle.size < rect.y + rect.h;
 
   if(hor && ver){
 
@@ -128,6 +128,12 @@ function drawBricks(){
 function update() {
   ctx.clearRect(0, 0, canvas.width, canvas.height);
 
+  if(circle.x == 900 ){
+    circle.x = 900-circle.size;
+  }else if(circle.x == 1){
+    circle.x = 1+circle.size;
+  }
+
   drawCircle();
   drawBricks();
   drawRect();
@@ -136,12 +142,12 @@ function update() {
   circle.x -= circle.dx;
   circle.y -= circle.dy;
 
-  if(mousex <= 50){
-    mousex = 50;
-  }else if(mousex >= 850){
-    mousex = 850;
+  if(mousex <= rect.w/2){
+    mousex = rect.w/2;
+  }else if(mousex >= canvas.width-rect.w/2){
+    mousex = canvas.width-rect.w/2;
   }
-  rect.x = mousex-50;
+  rect.x = mousex-rect.w/2;
 
   if (circle.x + circle.size > canvas.width || circle.x - circle.size < 0) {
     circle.dx *= -1;
