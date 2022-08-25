@@ -85,8 +85,19 @@ function collisionDetection(){
 
     circle.dy *= -1;
 
+    suunta();
+
   }
-  
+
+}
+
+function suunta(){
+  if(circle.x > rect.x && circle.x < rect.x +35 && circle.dx < 0){
+    circle.dx *=-1;
+  }else if(circle.x > rect.x+65 && circle.x < rect.x +rect.w && circle.dx > 0){
+    circle.dx *=-1;
+  }
+
 }
 
 function drawRect(){
@@ -126,9 +137,9 @@ function update() {
   circle.y -= circle.dy;
 
   if(mousex <= 50){
-    mousex = 51;
+    mousex = 50;
   }else if(mousex >= 850){
-    mousex = 849;
+    mousex = 850;
   }
   rect.x = mousex-50;
 
