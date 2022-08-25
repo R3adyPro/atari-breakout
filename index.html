@@ -8,6 +8,7 @@
 <style>
     body {
         background-color: white;
+        margin: 0;
     }
     h1 {
         color: black;
@@ -27,20 +28,19 @@
         border: 1px solid black;
     }
 </style>
-<body>
-<center>
-<h1>Amis Breakout</h1>
-    
-<div class='child' onmousemove="canvasGetCoords(event)">
-    <canvas id="canvas"></canvas>
-</div>
-<div class="child">
-    <div class="tilasto">
-        <h2><span id="lukema">0</span> pistettä</h2>
-    </div>
-</div>
-
-</center>
-<script src="script.js"></script>
-</body>
+    <body>
+        <center>
+            <h1>Amis Breakout</h1>
+                
+            <div class='child' onmousemove="canvasGetCoords(event)">
+                <canvas id="canvas"></canvas>
+            </div>
+            <div class="child" id="tilasto">
+                <div class="tilasto">
+                    <h2><span id="lukema">0</span> pistettä</h2>
+                </div>
+            </div>
+        </center>        
+        <script src="script.js"></script>
+    </body>
 </html>

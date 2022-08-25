@@ -34,8 +34,12 @@ const rect = {
 };
 
 function canvasGetCoords(e){
-    mousex=e.clientX-433;
-    console.log(mousex);
+  var leveys = document.documentElement.clientWidth;
+  if(leveys % 2){
+    leveys-=1;
+  }
+  mousex=e.clientX-((leveys-document.getElementById("tilasto").clientWidth-canvas.width-4)/2);
+  console.log(mousex);
 }
 
 
