@@ -158,8 +158,11 @@ function update() {
   circle.y -= circle.dy;
 
   if (pisteet == 400) {
-    dx == 0;
-    dy == 0;
+    circle.dx *= 0;
+    circle.dy *= 0;
+    document.getElementById("voittoRuutu").style.display = "block";
+    document.getElementById("canvasDiv").style.display = "none";
+    document.getElementById("tilastoDiv").style.display = "none";    
   }
   if(mousex <= rect.w/2){
     mousex = rect.w/2;
@@ -179,6 +182,8 @@ function update() {
     seinasound();
   }
   if (circle.y + circle.size > canvas.height) {
+    circle.dx *= 0;
+    circle.dy *= 0;
     document.getElementById("havioRuutu").style.display = "block";
     document.getElementById("canvasDiv").style.display = "none";
     document.getElementById("tilastoDiv").style.display = "none";    
