@@ -41,6 +41,16 @@ function seinasound() {
   var seina = new Audio("seina.mp3");
   seina.play();
 }
+function voittosound() {
+  var voitto = new Audio("voittoaani.mp3");
+  voitto.loop = false;
+  voitto.play();
+}
+function haviosound() {
+  var havio = new Audio("havioaani.mp3");
+  havio.loop = false;
+  havio.play();
+}
 function canvasGetCoords(e){
   var leveys = document.documentElement.clientWidth;
   if(leveys % 2){
@@ -160,6 +170,9 @@ function update() {
   if (pisteet == 400) {
     circle.dx *= 0;
     circle.dy *= 0;
+    circle.y = 200;
+    circle.x = 200;
+    voittosound();
     document.getElementById("voittoRuutu").style.display = "block";
     document.getElementById("canvasDiv").style.display = "none";
     document.getElementById("tilastoDiv").style.display = "none";    
@@ -184,14 +197,16 @@ function update() {
   if (circle.y + circle.size > canvas.height) {
     circle.dx *= 0;
     circle.dy *= 0;
-    document.getElementById("havioRuutu").style.display = "block";
+    circle.y = 200;
+    circle.x = 200;
+    haviosound();
+    document.getElementById("havioRuutu").style.display = "block";  
     document.getElementById("canvasDiv").style.display = "none";
     document.getElementById("tilastoDiv").style.display = "none";    
   }
 
   requestAnimationFrame(update);
 }
-
 
 
 
