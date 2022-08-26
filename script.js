@@ -190,7 +190,6 @@ function update() {
   }
 
   if (circle.y - circle.size < 0) {
-    console.log(1)
     circle.dy *= -1;
     seinasound();
   }
