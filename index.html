@@ -18,6 +18,17 @@
         color: white;
         font-family: 'Courier New', Courier, monospace;
     }
+    p {
+        font-family: monospace;
+        font-size: 24px;
+        color: white;
+        width: 275px;
+        height: 30px;
+        background-color: black;
+        border: 3px solid red;
+        border-radius: 8px;
+        cursor:pointer;
+    }
     canvas {
         background-color: black;
         border: 3px solid red;
@@ -47,11 +58,11 @@
             </div>
             <div class="havioRuutu" id="havioRuutu" style="display: none">
                 <h1>Hävisit pelin!</h1>
-                <button type="button" onclick="location.reload()">Aloita uudestaan</button>
+                <p onclick="location.reload()">Aloita uudestaan</p>
             </div>
             <div class="voittoRuutu" id="voittoRuutu" style="display: none">
                 <h1>Voitit pelin!</h1>
-                <button type="button" onclick="location.reload()">Aloita uudestaan</button>
+                <p onclick="location.reload()">Aloita uudestaan</p>
             </div>
             <div class='child' id="canvasDiv" onmousemove="canvasGetCoords(event)" style="display: none">
                 <canvas id="canvas"></canvas>
