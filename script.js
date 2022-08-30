@@ -61,7 +61,7 @@ function canvasGetCoords(e){
 
 
 
-function pelaa() {
+function klassikkoPeli() {
   document.getElementById("alkuRuutu").style.display = "none";
     document.getElementById("canvasDiv").style.display = "inline-block";
     document.getElementById("tilastoDiv").style.display = "inline-block";
@@ -77,10 +77,7 @@ function pelaa() {
     }
   };
     update();
-  }
-    
-
-function collisionDetection(){
+    function collisionDetection(){
 
   bricks.forEach(function(b){
     if (!b.status) return;
@@ -125,7 +122,6 @@ function drawRect(){
   ctx.strokeRect(rect.x,rect.y,rect.w,rect.h);
   ctx.fillRect(rect.x,rect.y,rect.w,rect.h);
 }
-
 function drawCircle() {
   ctx.beginPath();
   ctx.arc(circle.x, circle.y, circle.size, 0, Math.PI * 2);
@@ -150,7 +146,7 @@ function update() {
 
   if(circle.x == 900 ){
     circle.x = 900-circle.size;
-  }else if(circle.x == 1){
+  } else if (circle.x == 1) {
     circle.x = 1+circle.size;
   }
 
@@ -178,12 +174,10 @@ function update() {
     mousex = canvas.width-rect.w/2;
   }
   rect.x = mousex-rect.w/2;
-
   if (circle.x + circle.size > canvas.width || circle.x - circle.size < 0) {
     circle.dx *= -1;
     seinasound();
   }
-
   if (circle.y - circle.size < 0) {
     circle.dy *= -1;
     seinasound();
@@ -200,7 +194,5 @@ function update() {
   }
 
   requestAnimationFrame(update);
+  }
 }
-
-
-
