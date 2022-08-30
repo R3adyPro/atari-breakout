@@ -19,7 +19,7 @@
         color: white;
         font-family: 'Courier New', Courier, monospace;
     }
-    p {
+    h3 {
         font-family: monospace;
         font-size: 24px;
         color: white;
@@ -30,11 +30,22 @@
         border-radius: 8px;
         cursor:pointer;
     }
+    p {
+        font-family: monospace;
+        font-size: 24px;
+        color: white;
+        width: 175px;
+        height: 30px;
+        background-color: black;
+        border: 3px solid red;
+        border-radius: 8px;
+        cursor:pointer;
+    }
     canvas {
         background-color: black;
         border: 3px solid red;
     }
-    .child {
+    .osio {
     display: inline-block;
     vertical-align: top;
     }
@@ -50,25 +61,32 @@
             <div class="banner">
                 <img src="banner.png">
             </div>
-            <div class="alkuRuutu" id="alkuRuutu" style="display: block">
+                <div class="alkuRuutu" id="alkuRuutu">
                 <h1>Tervetuloa!</h1>
                 <h2 style="color: black">Pelin tavoitteena on tuhota kaikki palikat pallolla.</h2>
-                <h2 style="color: black">Peli alkaa painamalla välilyönti-näppäintä.</h2>
-                <img src="screenshot.jpg">
-                <h2 style="color: black">Pelissä olevaa lautaa liikutetaan hiirellä.</h2>
-            </div>
+                <div class="osio">
+                    <img src="screenshot.jpg" width="200px" height="200px" onclick="pelaa()">
+                    <p onclick="pelaa()">Klassikko</p>
+                </div>
+                    <div class="osio">
+                    <img src="screenshot.jpg" width="200px" height="200px">
+                    <p>Kaksi palloa</p>
+                    </div>
+                    </div>
+                    <h2 style="color: black">Pelissä olevaa lautaa liikutetaan hiirellä.</h2>
+                </div>
             <div class="havioRuutu" id="havioRuutu" style="display: none">
                 <h1>Hävisit pelin!</h1>
-                <p onclick="location.reload()">Aloita uudestaan</p>
+                <h3 onclick="location.reload()">Aloita uudestaan</h3>
             </div>
             <div class="voittoRuutu" id="voittoRuutu" style="display: none">
                 <h1>Voitit pelin!</h1>
-                <p onclick="location.reload()">Aloita uudestaan</p>
+                <h3 onclick="location.reload()">Aloita uudestaan</h3>
             </div>
-            <div class='child' id="canvasDiv" onmousemove="canvasGetCoords(event)" style="display: none">
+            <div class="osio" id="canvasDiv" onmousemove="canvasGetCoords(event)" style="display: none">
                 <canvas id="canvas"></canvas>
             </div>
-            <div class="child" id="tilasto">
+            <div class="osio" id="tilasto">
                 <div class="tilasto" id="tilastoDiv" style="display: none">
                     <h2><span id="lukema">0</span> pistettä</h2>
                 </div>
