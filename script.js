@@ -61,12 +61,8 @@ function canvasGetCoords(e){
 
 
 
-document.body.onkeyup = function(e) {
-  if (e.key == " " ||
-      e.code == "Space" ||      
-      e.keyCode == 32      
-  ) {
-    document.getElementById("alkuRuutu").style.display = "none";
+function pelaa() {
+  document.getElementById("alkuRuutu").style.display = "none";
     document.getElementById("canvasDiv").style.display = "inline-block";
     document.getElementById("tilastoDiv").style.display = "inline-block";
     console.log("Peli alkoi space-näppäimestä");
@@ -82,8 +78,7 @@ document.body.onkeyup = function(e) {
   };
     update();
   }
-  
-}
+    
 
 function collisionDetection(){
 
