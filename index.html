@@ -55,6 +55,35 @@
         background-color: black;
         border: 3px solid red;
     }
+    .scoreboard {
+        width: 190px;
+        height: 70px;
+        background-color: black;
+        border: 3px solid red;
+    }
+    .modal{
+    display: none;
+    position: fixed;
+    width: 40%;
+    height: 50%;
+    z-index: 1;
+    top: 10%;
+    left: 32%;
+    }
+    .modal-content{
+        background-color: white;
+        margin: 5% auto;
+        width: 100%;
+        border: 1px solid black;
+        padding: 4px;
+    }
+    .close {
+        color: rgb(0, 0, 0);
+        float: right;
+        font-size: 28px;
+        font-weight: bold;
+        margin-right: 10px;
+    }
 </style>
     <body>
         <center>
@@ -89,6 +118,21 @@
             <div class="osio" id="tilasto">
                 <div class="tilasto" id="tilastoDiv" style="display: none">
                     <h2><span id="lukema">0</span> pistettä</h2>
+                </div>
+            </div>
+            <div onclick="nayta()" class="osio" id="scoreboard">
+                <div class="scoreboard" id="scoreboardDiv" style="display: none">
+                    <h2 ><span id="lukema"></span> Scoreboard</h2>
+                </div>
+            </div>
+            <div id="tulokset" class="modal">
+                <div class="modal-content">
+                  <span class="close">&times;</span>
+                  <h1>1.<p id="1">0</p></h1>
+                  <h1>2.<p id="2">0</p></h1>
+                  <h1>3.<p id="3">0</p></h1>
+                  <h1>4.<p id="4">0</p></h1>
+                  <h1>5.<p id="5">0</p></h1>
                 </div>
             </div>
         </center>        

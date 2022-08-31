@@ -4,10 +4,14 @@ const ctx = canvas.getContext('2d');
 canvas.width = 900;
 canvas.height = 800;
 var mousex;
+var modal = document.getElementById("tulokset")
+var btn = document.getElementById("näytä")
+var span = document.getElementsByClassName("close")[0];
 
 let rowCount = 8;
 let columnCount = 5;
 let bricks = [];
+let topScore = [];
 
 const circle = {
   x: 450,
@@ -32,6 +36,38 @@ const rect = {
   w: 100,
   h: 10
 };
+//scoreboard
+function nayta(){
+  modal.style.display = "block";
+}
+
+window.onclick = function(event){
+  if (event.taget == modal){
+      modal.style.display = "none";
+  }
+}
+span.onclick = function(){
+  modal.style.display = "none";
+}
+function addScore(){
+  topScore = JSON.parse(localStorage.getItem("score")) || [];
+  topScore.push(pisteet);
+  topScore.sort((a, b) => b - a);
+  for(i = 4; i < topScore.length; i++){
+    topScore.pop();
+  }
+  console.log(topScore)
+  localStorage.setItem("score", JSON.stringify(topScore))
+}
+function scoreboard(){
+  let ar = JSON.parse(localStorage.score)
+  for(i=0; i<5; i++){
+    document.getElementById(i+1).innerHTML = ar[i];
+  }
+
+}
+
+
 
 function palikkasound() {
   var sound = new Audio("aani.mp3");
@@ -57,6 +93,7 @@ function canvasGetCoords(e){
     leveys-=1;
   }
   mousex=e.clientX-((leveys-document.getElementById("tilasto").clientWidth-canvas.width-4)/2);
+  mousex=e.clientX-((leveys-document.getElementById("scoreboard").clientWidth-canvas.width-4)/2);
 }
 
 
@@ -65,6 +102,8 @@ function klassikkoPeli() {
   document.getElementById("alkuRuutu").style.display = "none";
     document.getElementById("canvasDiv").style.display = "inline-block";
     document.getElementById("tilastoDiv").style.display = "inline-block";
+    document.getElementById("scoreboardDiv").style.display = "inline-block";
+    scoreboard();
     console.log("Peli alkoi space-näppäimestä");
   
   for(c = 0; c < columnCount; c++){ 
@@ -164,9 +203,12 @@ function update() {
     circle.y = 200;
     circle.x = 200;
     voittosound();
+    addScore();
+    scoreboard();
     document.getElementById("voittoRuutu").style.display = "block";
     document.getElementById("canvasDiv").style.display = "none";
-    document.getElementById("tilastoDiv").style.display = "none";    
+    document.getElementById("tilastoDiv").style.display = "none";
+    document.getElementById("scoreboardDiv").style.display = "none";    
   }
   if(mousex <= rect.w/2){
     mousex = rect.w/2;
@@ -188,9 +230,12 @@ function update() {
     circle.y = 200;
     circle.x = 200;
     haviosound();
+    addScore();
+    scoreboard();
     document.getElementById("havioRuutu").style.display = "block";  
     document.getElementById("canvasDiv").style.display = "none";
-    document.getElementById("tilastoDiv").style.display = "none";    
+    document.getElementById("tilastoDiv").style.display = "none";
+    document.getElementById("scoreboardDiv").style.display = "none";      
   }
 
   requestAnimationFrame(update);
