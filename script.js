@@ -69,6 +69,7 @@ function scoreboard(){
 
 
 
+
 function palikkasound() {
   var sound = new Audio("aani.mp3");
   sound.play();
