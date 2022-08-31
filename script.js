@@ -167,6 +167,7 @@ function update() {
     document.getElementById("voittoRuutu").style.display = "block";
     document.getElementById("canvasDiv").style.display = "none";
     document.getElementById("tilastoDiv").style.display = "none";    
+    context.clearRect(0, 0, canvas.width, canvas.height);
   }
   if(mousex <= rect.w/2){
     mousex = rect.w/2;
@@ -190,7 +191,8 @@ function update() {
     haviosound();
     document.getElementById("havioRuutu").style.display = "block";  
     document.getElementById("canvasDiv").style.display = "none";
-    document.getElementById("tilastoDiv").style.display = "none";    
+    document.getElementById("tilastoDiv").style.display = "none";
+    context.clearRect(0, 0, canvas.width, canvas.height);
   }
 
   requestAnimationFrame(update);
