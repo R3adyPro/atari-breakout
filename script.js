@@ -244,3 +244,45 @@ function update() {
   requestAnimationFrame(update);
   }
 }
+
+function tuplaKosketus(){
+  document.getElementById("alkuRuutu").style.display = "none";
+  document.getElementById("canvasDiv").style.display = "inline-block";
+  document.getElementById("tilastoDiv").style.display = "inline-block";
+  document.getElementById("scoreboardDiv").style.display = "inline-block";
+  scoreboard();
+  console.log("Peli alkoi space-näppäimestä");
+
+  for(c = 0; c < columnCount; c++){ 
+    for(r = 0; r < rowCount; r++){
+      bricks.push({
+        palikkaX : (r * (brickType.w + brickType.padding)) + brickType.offsetX,
+        palikkaY : (c * (brickType.h + brickType.padding)) + brickType.offsetY,
+        hela: 1,
+        status: 1
+      })
+    }
+    };
+  update();
+  function collisionDetection(){
+
+  bricks.forEach(function(b){
+    if (!b.status) return;
+
+    var colums = circle.x > b.palikkaX && circle.x < b.palikkaX + brickType.w,
+        rows = circle.y > b.palikkaY && circle.y < b.palikkaY + brickType.h;
+
+        if (colums && rows){
+          circle.dy *= -1;
+          palikkasound();
+          if(b.hela == 0){
+            pisteet += 10;
+            document.getElementById("lukema").innerHTML = pisteet;
+            b.status = 0;
+            console.log(bricks)
+          }
+          b.hela = b.hela -1;
+        }
+    })
+  }
+}
