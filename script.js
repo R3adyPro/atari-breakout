@@ -7,6 +7,7 @@ var mousex;
 var modal = document.getElementById("tulokset")
 var btn = document.getElementById("näytä")
 var span = document.getElementsByClassName("close")[0];
+var gamemode = 0;
 
 let rowCount = 8;
 let columnCount = 5;
@@ -67,9 +68,6 @@ function scoreboard(){
 
 }
 
-
-
-
 function palikkasound() {
   var sound = new Audio("aani.mp3");
   sound.play();
@@ -93,31 +91,11 @@ function canvasGetCoords(e){
   if(leveys % 2){
     leveys-=1;
   }
-  mousex=e.clientX-((leveys-document.getElementById("tilasto").clientWidth-canvas.width-4)/2);
-  mousex=e.clientX-((leveys-document.getElementById("scoreboard").clientWidth-canvas.width-4)/2);
+  mousex=e.clientX-((leveys-document.getElementById("tilasto").clientWidth-canvas.width-4)/4);
+  mousex=e.clientX-((leveys-document.getElementById("scoreboard").clientWidth-canvas.width-4)/4);
 }
 
-
-
-function klassikkoPeli() {
-  document.getElementById("alkuRuutu").style.display = "none";
-    document.getElementById("canvasDiv").style.display = "inline-block";
-    document.getElementById("tilastoDiv").style.display = "inline-block";
-    document.getElementById("scoreboardDiv").style.display = "inline-block";
-    scoreboard();
-    console.log("Peli alkoi space-näppäimestä");
-  
-  for(c = 0; c < columnCount; c++){ 
-    for(r = 0; r < rowCount; r++){
-     bricks.push({
-       palikkaX : (r * (brickType.w + brickType.padding)) + brickType.offsetX,
-       palikkaY : (c * (brickType.h + brickType.padding)) + brickType.offsetY,
-       status: 1
-     })
-    }
-  };
-    update();
-    function collisionDetection(){
+function collisionDetection(){
 
   bricks.forEach(function(b){
     if (!b.status) return;
@@ -175,7 +153,15 @@ function drawBricks(){
     
     ctx.beginPath();
     ctx.rect(brick.palikkaX, brick.palikkaY, brickType.w, brickType.h)
-    ctx.fillStyle = "red"
+    if (brick.hela == 1) {
+      ctx.fillStyle = "red"
+    }
+    if (brick.hela == 0) {
+      ctx.fillStyle = "darkred"
+    }
+    else {
+      ctx.fillStyle = "red"
+    }
     ctx.fill();
     ctx.closePath();
   })
@@ -193,7 +179,12 @@ function update() {
   drawCircle();
   drawBricks();
   drawRect();
-  collisionDetection();
+  if (gamemode == 1) {
+    collisionDetection();
+  }
+  if (gamemode == 2) {
+    collisionDetectionToinen();
+  }
 
   circle.x -= circle.dx;
   circle.y -= circle.dy;
@@ -205,7 +196,7 @@ function update() {
     circle.x = 200;
     voittosound();
     addScore();
-    scoreboard();
+    //scoreboard();
     document.getElementById("voittoRuutu").style.display = "block";
     document.getElementById("canvasDiv").style.display = "none";
     document.getElementById("tilastoDiv").style.display = "none";
@@ -233,7 +224,7 @@ function update() {
     circle.x = 200;
     haviosound();
     addScore();
-    scoreboard();
+    //scoreboard();
     document.getElementById("havioRuutu").style.display = "block";  
     document.getElementById("canvasDiv").style.display = "none";
     document.getElementById("tilastoDiv").style.display = "none";
@@ -243,9 +234,30 @@ function update() {
 
   requestAnimationFrame(update);
   }
-}
 
+function klassikkoPeli() {
+  gamemode = 1;
+  document.getElementById("alkuRuutu").style.display = "none";
+    document.getElementById("canvasDiv").style.display = "inline-block";
+    document.getElementById("tilastoDiv").style.display = "inline-block";
+    document.getElementById("scoreboardDiv").style.display = "inline-block";
+    //scoreboard();
+    console.log("Peli alkoi space-näppäimestä");
+  
+  for(c = 0; c < columnCount; c++){ 
+    for(r = 0; r < rowCount; r++){
+     bricks.push({
+       palikkaX : (r * (brickType.w + brickType.padding)) + brickType.offsetX,
+       palikkaY : (c * (brickType.h + brickType.padding)) + brickType.offsetY,
+       status: 1
+     })
+    }
+  };
+    update();
+}
+  
 function tuplaKosketus(){
+  gamemode = 2;
   document.getElementById("alkuRuutu").style.display = "none";
   document.getElementById("canvasDiv").style.display = "inline-block";
   document.getElementById("tilastoDiv").style.display = "inline-block";
@@ -262,9 +274,10 @@ function tuplaKosketus(){
         status: 1
       })
     }
-    };
+    }
   update();
-  function collisionDetection(){
+  }
+  function collisionDetectionToinen(){
 
   bricks.forEach(function(b){
     if (!b.status) return;
@@ -279,10 +292,17 @@ function tuplaKosketus(){
             pisteet += 10;
             document.getElementById("lukema").innerHTML = pisteet;
             b.status = 0;
-            console.log(bricks)
           }
           b.hela = b.hela -1;
         }
     })
+    var hor = (circle.x+circle.size > rect.x || circle.x-circle.size > rect.x) && (circle.x+circle.size < rect.x + rect.w || circle.x-circle.size < rect.x + rect.w);
+    var ver = circle.y+circle.size > rect.y && circle.y+circle.size < rect.y + rect.h;
+  
+    if(hor && ver){
+  
+      circle.dy *= -1;
+  
+      suunta();
   }
-}
+  }
