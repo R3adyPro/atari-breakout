@@ -9,6 +9,10 @@ var btn = document.getElementById("näytä")
 var span = document.getElementsByClassName("close")[0];
 var gamemode = 0;
 
+if (localStorage.getItem("score") == null) {
+  localStorage.setItem("score","0");
+}
+
 let rowCount = 8;
 let columnCount = 5;
 let bricks = [];
@@ -37,6 +41,7 @@ const rect = {
   w: 100,
   h: 10
 };
+
 //scoreboard
 function nayta(){
   modal.style.display = "block";
@@ -47,21 +52,24 @@ window.onclick = function(event){
       modal.style.display = "none";
   }
 }
+
 span.onclick = function(){
   modal.style.display = "none";
 }
+
 function addScore(){
-  topScore = JSON.parse(localStorage.getItem("score")) || [];
+  topScore = JSON.parse(localStorage.getItem("score")) || [];  
   topScore.push(pisteet);
   topScore.sort((a, b) => b - a);
   for(i = 4; i < topScore.length; i++){
     topScore.pop();
   }
-  console.log(topScore)
-  localStorage.setItem("score", JSON.stringify(topScore))
+  console.log(topScore);
+  localStorage.setItem("score", JSON.stringify(topScore));
 }
+
 function scoreboard(){
-  let ar = JSON.parse(localStorage.score)
+  let ar = JSON.parse(localStorage.score);
   for(i=0; i<5; i++){
     document.getElementById(i+1).innerHTML = ar[i];
   }
