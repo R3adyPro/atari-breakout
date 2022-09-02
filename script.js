@@ -196,7 +196,7 @@ function update() {
     circle.x = 200;
     voittosound();
     addScore();
-    //scoreboard();
+    scoreboard();
     document.getElementById("voittoRuutu").style.display = "block";
     document.getElementById("canvasDiv").style.display = "none";
     document.getElementById("tilastoDiv").style.display = "none";
@@ -224,7 +224,7 @@ function update() {
     circle.x = 200;
     haviosound();
     addScore();
-    //scoreboard();
+    scoreboard();
     document.getElementById("havioRuutu").style.display = "block";  
     document.getElementById("canvasDiv").style.display = "none";
     document.getElementById("tilastoDiv").style.display = "none";
@@ -241,7 +241,7 @@ function klassikkoPeli() {
     document.getElementById("canvasDiv").style.display = "inline-block";
     document.getElementById("tilastoDiv").style.display = "inline-block";
     document.getElementById("scoreboardDiv").style.display = "inline-block";
-    //scoreboard();
+    scoreboard();
     console.log("Peli alkoi space-näppäimestä");
   
   for(c = 0; c < columnCount; c++){ 
