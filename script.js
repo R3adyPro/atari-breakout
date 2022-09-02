@@ -91,8 +91,8 @@ function canvasGetCoords(e){
   if(leveys % 2){
     leveys-=1;
   }
-  mousex=e.clientX-((leveys-document.getElementById("tilasto").clientWidth-canvas.width-4)/4);
-  mousex=e.clientX-((leveys-document.getElementById("scoreboard").clientWidth-canvas.width-4)/4);
+  mousex=e.clientX-((leveys-document.getElementById("tilasto").clientWidth-canvas.width-300)/2);
+  mousex=e.clientX-((leveys-document.getElementById("scoreboard").clientWidth-canvas.width-300)/2);
 }
 
 function collisionDetection(){
